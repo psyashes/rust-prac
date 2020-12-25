@@ -25,5 +25,13 @@ fn main() {
         little_bro: String::from("Luigi")
     };
     b.greet_by_big().greet_by_little();
+
+    // vector
+    let v = vec![1, 2, 3];
+    for element in &v {
+        println!("{}", element);
+    }
+
+    // panic
     panic!("In the end.");
 }
