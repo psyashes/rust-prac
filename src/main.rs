@@ -25,4 +25,5 @@ fn main() {
         little_bro: String::from("Luigi")
     };
     b.greet_by_big().greet_by_little();
+    panic!("In the end.");
 }
