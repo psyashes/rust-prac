@@ -46,6 +46,11 @@ impl Tweet for Duck {
     }
 }
 
+struct Color {
+    r: i32,
+    g: i32,
+}
+
 // main function
 fn main() {
     // construct struct
@@ -72,6 +77,12 @@ fn main() {
     for bird in bird_vec {
         bird.tweet();
     }
+
+    // ownership
+    let a = Color{r:255, g:255};
+    println!("a content is {}", a.r);
+    let b = a;
+    println!("b content is {}", b.g);
 
     // panic
     panic!("In the end.");
