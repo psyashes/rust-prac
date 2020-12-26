@@ -84,6 +84,17 @@ fn main() {
     let b = a;
     println!("b content is {}", b.g);
 
+    // borrow
+    let mut x = 5;
+    {
+       let y = &mut x;
+       dbg!(y);
+    }
+    {
+        let y = &x;
+        dbg!(y);
+    }
+
     // panic
     panic!("In the end.");
 }
