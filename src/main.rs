@@ -1,3 +1,5 @@
+use std::thread;
+
 // define struct
 struct Brothers {
     big_bro: String,
@@ -93,6 +95,17 @@ fn main() {
     {
         let y = &x;
         dbg!(y);
+    }
+
+    // thread
+    let mut handles = Vec::new();
+    for x in 1..10 {
+        handles.push(thread::spawn(move || {
+            println!("Sheep :{}", x);
+        }));
+    }
+    for handle in handles {
+        let _ = handle.join();
     }
 
     // panic
