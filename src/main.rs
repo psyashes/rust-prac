@@ -1,5 +1,6 @@
 use std::thread;
 use std::sync::{Arc, Mutex};
+use futures::executor;
 
 // define struct
 struct Brothers {
@@ -52,6 +53,17 @@ impl Tweet for Duck {
 struct Color {
     r: i32,
     g: i32,
+}
+
+// async
+async fn async_add(left: i32, right: i32) -> i32 {
+    left + right
+}
+
+async fn greate_async_fn() -> i32 {
+    let ans = async_add(2, 3).await;
+    println!("await result is {}", ans);
+    ans
 }
 
 // main function
@@ -112,6 +124,8 @@ fn main() {
         let _ = handle.join();
     }
     dbg!(data);
+
+    executor::block_on(greate_async_fn());
 
     // panic
     panic!("In the end.");
