@@ -1,4 +1,5 @@
 use std::thread;
+use std::sync::{Arc, Mutex};
 
 // define struct
 struct Brothers {
@@ -99,14 +100,18 @@ fn main() {
 
     // thread
     let mut handles = Vec::new();
+    let data = Arc::new(Mutex::new(vec![1; 10]));
     for x in 1..10 {
+        let data_ref = data.clone();
         handles.push(thread::spawn(move || {
-            println!("Sheep :{}", x);
+            let mut data = data_ref.lock().unwrap();
+            data[x] += 1;
         }));
     }
     for handle in handles {
         let _ = handle.join();
     }
+    dbg!(data);
 
     // panic
     panic!("In the end.");
